@@ -4,11 +4,13 @@ int main()
 {
 	huw::game game;
 
-	huw::sprite sprite("../assets/test_sprite.png", &game, 0, 0, 32, 32);
+	huw::sprite hase1("../assets/Haeschen1.png", &game, 0, 0, 32, 32);
+	huw::sprite hase2("../assets/Haeschen1.png", &game, 0, 0, 32, 32);
+	huw::player player(&hase1, &hase2, &game);
 
-	for(int i=0; i<100; i++)
+	while(1)
 	{
-		sprite.render(100, 100);
+		player.update();
 		game.update();
 	}
 	SDL_Delay(1000);

@@ -16,10 +16,17 @@ huw::game::game()
 		std::cout << "RENDERER is bad anc evil and doesn't work" << std::endl;
 	}
 
-	SDL_SetRenderDrawColor(m_renderer, 255,0,255,0); //pinker Hintergrund
+	SDL_SetRenderDrawColor(m_renderer, 0,0,0,0); //schwarzer Hintergrund
 
 	std::cout << "initializing SDL2_image" << std::endl;
 	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
+
+	//Tastaturzustandsarray
+	keyboard_state=SDL_GetKeyboardState(NULL);
+	if(keyboard_state==NULL)
+	{
+		std::cout << "Keyboard not available" << std::endl;
+	}
 }
 
 huw::game::~game()
@@ -30,6 +37,7 @@ huw::game::~game()
 
 void huw::game::update()
 {
+	SDL_PumpEvents(); //updaten der Eventqueue
 	SDL_RenderPresent(m_renderer);
-	//SDL_RenderClear(m_renderer);
+	SDL_RenderClear(m_renderer);
 }

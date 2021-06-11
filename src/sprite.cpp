@@ -22,13 +22,15 @@ huw::sprite::sprite(const char* file_path, huw::game *game, int x, int y, int w,
 	{
 		std::cout << "Texture is broken" << std::endl;
 	}
+	SDL_FreeSurface(tmp_surface);
 }
 
-void huw::sprite::render(int x, int y)
+void huw::sprite::render(int x, int y, int w, int h)
 {
-	m_dst_rect=m_src_rect; //Weite und Höhe wird kopiert
 	m_dst_rect.x=x;
 	m_dst_rect.y=y;
+	m_dst_rect.w=w;
+	m_dst_rect.h=h;
 	if(SDL_RenderCopy(m_game->m_renderer, m_texture, &m_src_rect, &m_dst_rect)!=0)
 	{
 		std::cout << "can't draw" << std::endl;
