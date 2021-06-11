@@ -6,6 +6,12 @@
 namespace huw
 {
 
-	
-	
+	class game
+	{
+	private:
+	public:
+		game();
+		~game();
+	};
+
 }
