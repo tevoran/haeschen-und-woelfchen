@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/huw.hpp
+iostream
+-
+SDL2/SDL.h
+-
+SDL2/SDL_image.h
+-
+SDL2/SDL_ttf.h
+-
+
+/home/johannespfeiffer/Code/haeschen-und-woelfchen/src/main.cpp
+huw.hpp
+-
+

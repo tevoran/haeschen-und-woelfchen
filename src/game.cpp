@@ -2,6 +2,7 @@
 
 huw::game::game()
 {
+	std::cout << "Starting the glorious and lovely game of Häschen und Wölfchen" << std::endl;
 	std::cout << "initializing SDL2" << std::endl;
 	SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -15,7 +16,10 @@ huw::game::game()
 		std::cout << "RENDERER is bad anc evil and doesn't work" << std::endl;
 	}
 
-	SDL_SetRenderDrawColor(m_renderer, 255,0,255,0);
+	SDL_SetRenderDrawColor(m_renderer, 255,0,255,0); //pinker Hintergrund
+
+	std::cout << "initializing SDL2_image" << std::endl;
+	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
 }
 
 huw::game::~game()
@@ -26,6 +30,6 @@ huw::game::~game()
 
 void huw::game::update()
 {
-	SDL_RenderClear(m_renderer);
 	SDL_RenderPresent(m_renderer);
+	//SDL_RenderClear(m_renderer);
 }
