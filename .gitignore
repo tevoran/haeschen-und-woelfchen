@@ -23,6 +23,5 @@ build
 # Compiled Static libraries
 
 # Executables
-*.exe
 *.out
 *.app
