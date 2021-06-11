@@ -3,6 +3,8 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
+#define PLAYER_SIZE 64
+
 namespace huw
 {
 	class game
