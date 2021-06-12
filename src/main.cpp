@@ -16,5 +16,4 @@ int main(int argc, char *argv[])
 		player.update();
 		game.update(quit);
 	}
-	SDL_Delay(1000);
 }
