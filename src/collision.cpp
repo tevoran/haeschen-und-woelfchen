@@ -1,5 +1,6 @@
 #include <huw.hpp>
 
+
 bool huw::collision(huw::sprite& a, huw::sprite& b)
 {
 	if(	a.dst_rect.x < b.dst_rect.x+b.dst_rect.w &&
