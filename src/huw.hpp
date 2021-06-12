@@ -1,15 +1,23 @@
+#pragma once
+
 #include <iostream>
 #include <chrono>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
-#define PLAYER_SIZE 64
+#include <definitions.hpp>
 
 using namespace std::chrono;
 
 namespace huw
 {
+	struct vec2
+	{
+		float x;
+		float y;
+	};
+
 	class game
 	{
 	private:
@@ -25,6 +33,7 @@ namespace huw
 
 		//frametime
 		float delta_t; //in sekunden
+
 	public:
 		game();
 		~game();
@@ -37,13 +46,17 @@ namespace huw
 		SDL_Texture *m_texture=NULL;
 		huw::game *m_game=NULL;
 		SDL_Rect m_src_rect;
-	public:
 		SDL_Rect dst_rect; //Zielposition und Größe
 
 	public:
-		sprite(const char* file_path, huw::game *game, int x, int y, int w, int h); //Angaben in Pixeln
+		huw::vec2 pos; //aktuelle position
+		huw::vec2 acc; //aktuelle beschleunigung
+
+	public:
+		sprite(const char* file_path, huw::game *game, int x, int y, int w, int h, int target_w, int target_h); //Angaben in Pixeln
 		void render(int x, int y, int w, int h);
 		void render();
+		void physics_update();
 	};
 
 	class player

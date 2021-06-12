@@ -1,6 +1,6 @@
 #include <huw.hpp>
 
-huw::sprite::sprite(const char* file_path, huw::game *game, int x, int y, int w, int h) //Angaben in Pixeln
+huw::sprite::sprite(const char* file_path, huw::game *game, int x, int y, int w, int h, int target_w, int target_h) //Angaben in Pixeln
 
 {
 	std::cout << "loading sprite from " << file_path << std::endl;
@@ -17,12 +17,20 @@ huw::sprite::sprite(const char* file_path, huw::game *game, int x, int y, int w,
 	m_src_rect.w=w;
 	m_src_rect.h=h;
 
+	dst_rect.w=target_w;
+	dst_rect.h=target_h;
+
 	m_texture=SDL_CreateTextureFromSurface(m_game->m_renderer, tmp_surface);
 	if(m_texture==NULL)
 	{
 		std::cout << "Texture is broken" << std::endl;
 	}
 	SDL_FreeSurface(tmp_surface);
+
+	pos.x=0;
+	pos.y=0;
+	acc.x=0;
+	acc.y=0;
 }
 
 void huw::sprite::render(int x, int y, int w, int h)
@@ -40,9 +48,29 @@ void huw::sprite::render(int x, int y, int w, int h)
 
 void huw::sprite::render()
 {
+	dst_rect.x=pos.x;
+	dst_rect.y=pos.y;
+
 	if(SDL_RenderCopy(m_game->m_renderer, m_texture, &m_src_rect, &dst_rect)!=0)
 	{
 		std::cout << "can't draw" << std::endl;
 		std::cout << "ERROR: " << SDL_GetError() << std::endl;
+	}
+}
+
+void huw::sprite::physics_update()
+{
+	//schwerkraft
+	acc.y+=GRAVITY*m_game->delta_t;
+
+	//position aktualisieren
+	pos.x=pos.x+acc.x*m_game->delta_t;
+	pos.y=pos.y+acc.y*m_game->delta_t;
+
+	//boden
+	if((pos.y+dst_rect.h)>RESY)
+	{
+		pos.y=RESY-dst_rect.h;
+		acc.y=0;
 	}
 }

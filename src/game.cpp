@@ -7,7 +7,7 @@ huw::game::game()
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	std::cout << "creating window" << std::endl;
-	m_window=SDL_CreateWindow("Häschen und Wölfchen", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0 );
+	m_window=SDL_CreateWindow("Häschen und Wölfchen", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, RESX, RESY, 0 );
 
 	std::cout << "creating renderer" << std::endl;
 	m_renderer=SDL_CreateRenderer(m_window, -1, SDL_RENDERER_PRESENTVSYNC);

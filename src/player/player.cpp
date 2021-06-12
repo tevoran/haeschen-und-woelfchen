@@ -9,43 +9,90 @@ huw::player::player(huw::sprite *hase, huw::sprite *wolf, huw::game *game)
 	m_active_char=m_hase;
 
 	//Positionen setzen
-	m_hase->dst_rect.x=0;
-	m_hase->dst_rect.y=0;
-	m_wolf->dst_rect.x=250;
-	m_wolf->dst_rect.y=0;
-
-	m_wolf->dst_rect.w=PLAYER_SIZE;
-	m_wolf->dst_rect.h=PLAYER_SIZE;
-	m_hase->dst_rect.w=PLAYER_SIZE;
-	m_hase->dst_rect.h=PLAYER_SIZE;
-
+	m_hase->pos.x=0;
+	m_hase->pos.y=0;
+	m_wolf->pos.x=250;
+	m_wolf->pos.y=0;
 }
 
 void huw::player::update()
 {
 	//steuerung vom spieler
+	//rechts
+	static float acceleration_time_right=0;
 	if(m_game->keyboard_state[SDL_SCANCODE_D])
 	{
-		if(m_active_char==m_hase)
+		acceleration_time_right+=m_game->delta_t;
+		if(acceleration_time_right<ACCELERATION_DURATION_HORIZONTAL)
 		{
-			m_hase->dst_rect.x+=1;
-		}
-		if(m_active_char==m_wolf)
-		{
-			m_wolf->dst_rect.x+=1;
+			if(m_active_char==m_hase)
+			{
+				m_hase->acc.x+=HASE_ACCELERATION_HORIZONTAL*m_game->delta_t;
+			}
+			if(m_active_char==m_wolf)
+			{
+				m_wolf->acc.x+=WOLF_ACCELERATION_HORIZONTAL*m_game->delta_t;
+			}
 		}
 	}
+	else
+	{
+		acceleration_time_right=0;
+		if(m_active_char==m_hase && m_hase->acc.x>0)
+		{
+			m_hase->acc.x-=HASE_DECELERATION_HORIZONTAL*m_game->delta_t;
+			if(m_hase->acc.x<0)
+			{
+				m_hase->acc.x=0;
+			}
+		}
+		if(m_active_char==m_wolf && m_wolf->acc.x>0)
+		{
+			m_wolf->acc.x-=WOLF_DECELERATION_HORIZONTAL*m_game->delta_t;
+			if(m_wolf->acc.x<0)
+			{
+				m_wolf->acc.x=0;
+			}
+		}	
+	}
 
+	//links
+	static float acceleration_time_left=0;
 	if(m_game->keyboard_state[SDL_SCANCODE_A])
 	{
-		if(m_active_char==m_hase)
+		acceleration_time_left+=m_game->delta_t;
+		if(acceleration_time_left<ACCELERATION_DURATION_HORIZONTAL)
 		{
-			m_hase->dst_rect.x-=1;
+			if(m_active_char==m_hase)
+			{
+				m_hase->acc.x-=HASE_ACCELERATION_HORIZONTAL*m_game->delta_t;
+			}
+			if(m_active_char==m_wolf)
+			{
+				m_wolf->acc.x-=WOLF_ACCELERATION_HORIZONTAL*m_game->delta_t;
+			}
 		}
-		if(m_active_char==m_wolf)
+	}
+	//decelleration
+	else
+	{
+		acceleration_time_left=0;
+		if(m_active_char==m_hase && m_hase->acc.x<0)
 		{
-			m_wolf->dst_rect.x-=1;
+			m_hase->acc.x+=HASE_DECELERATION_HORIZONTAL*m_game->delta_t;
+			if(m_hase->acc.x>0)
+			{
+				m_hase->acc.x=0;
+			}
 		}
+		if(m_active_char==m_wolf && m_wolf->acc.x<0)
+		{
+			m_wolf->acc.x+=WOLF_DECELERATION_HORIZONTAL*m_game->delta_t;
+			if(m_wolf->acc.x>0)
+			{
+				m_wolf->acc.x=0;
+			}
+		}	
 	}
 
 	//charakter wechseln
@@ -70,6 +117,10 @@ void huw::player::update()
 		key_lshift_down=false;
 	}
 	
+	//physik update
+	m_hase->physics_update();
+	m_wolf->physics_update();
+
 	//render beide Player Charaktere
 	m_hase->render();
 	m_wolf->render();
