@@ -3,7 +3,7 @@
 #define GRAVITY 100
 
 #define RESX 1280
-#define RESY 720
+#define RESY 704
 #define PLAYER_SIZE 64
 
 

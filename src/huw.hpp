@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <vector>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
@@ -75,3 +76,5 @@ namespace huw
 	bool collision(huw::sprite& a, huw::sprite& b);
 
 }
+
+#include <level/level.hpp>
