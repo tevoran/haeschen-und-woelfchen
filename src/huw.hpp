@@ -11,6 +11,7 @@
 using namespace std::chrono;
 
 namespace huw
+
 {
 	struct vec2
 	{
@@ -46,6 +47,8 @@ namespace huw
 		SDL_Texture *m_texture=NULL;
 		huw::game *m_game=NULL;
 		SDL_Rect m_src_rect;
+		float old_xpos;
+		float old_ypos;
 
 	public:
 		huw::vec2 pos; //aktuelle position
@@ -73,5 +76,10 @@ namespace huw
 	};
 
 	bool collision(huw::sprite& a, huw::sprite& b);
+	bool coll_up(huw::sprite& a);
+	bool coll_down(huw::sprite& a);
+	bool coll_right(huw::sprite& a);
+	bool coll_left(huw::sprite& a);
+	bool coll_all(huw::sprite& a);
 
 }
