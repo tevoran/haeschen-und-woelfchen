@@ -7,7 +7,6 @@ huw::level::level(uint8_t level[11][20], huw::game *game)
 	{
 		for(int ix=0; ix<LEVEL_X; ix++)
 		{
-			std::cout << LEVEL_X << std::endl;
 			switch(level[iy][ix])
 			{
 				case ABFALL:
