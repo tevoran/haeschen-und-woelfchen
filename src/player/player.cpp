@@ -35,6 +35,7 @@ void huw::player::update()
 			}
 		}
 	}
+	//decelleration
 	else
 	{
 		acceleration_time_right=0;
@@ -53,7 +54,24 @@ void huw::player::update()
 			{
 				m_wolf->acc.x=0;
 			}
-		}	
+		}
+	}
+	//stoppen des nicht aktiven charakters
+	if(m_active_char==m_hase && m_wolf->acc.x>0)
+	{
+		m_wolf->acc.x-=WOLF_DECELERATION_HORIZONTAL*m_game->delta_t;
+		if(m_wolf->acc.x<0)
+		{
+			m_wolf->acc.x=0;
+		}
+	}
+	if(m_active_char==m_wolf && m_hase->acc.x>0)
+	{
+		m_hase->acc.x-=WOLF_DECELERATION_HORIZONTAL*m_game->delta_t;
+		if(m_hase->acc.x<0)
+		{
+			m_hase->acc.x=0;
+		}
 	}
 
 	//links
@@ -93,6 +111,23 @@ void huw::player::update()
 				m_wolf->acc.x=0;
 			}
 		}	
+	}
+	//stoppen des nicht aktiven charakters
+	if(m_active_char==m_hase && m_wolf->acc.x<0)
+	{
+		m_wolf->acc.x+=WOLF_DECELERATION_HORIZONTAL*m_game->delta_t;
+		if(m_wolf->acc.x>0)
+		{
+			m_wolf->acc.x=0;
+		}
+	}
+	if(m_active_char==m_wolf && m_hase->acc.x<0)
+	{
+		m_hase->acc.x+=WOLF_DECELERATION_HORIZONTAL*m_game->delta_t;
+		if(m_hase->acc.x>0)
+		{
+			m_hase->acc.x=0;
+		}
 	}
 
 	//jump
