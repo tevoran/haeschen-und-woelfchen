@@ -77,7 +77,6 @@ namespace huw
 
 	bool collision(huw::sprite& a, huw::sprite& b);
 
-
 }
 
 #include <level/level.hpp>

@@ -1,7 +1,5 @@
 #include <huw.hpp>
 
-extern huw::sprite abfall;
-
 
 bool huw::collision(huw::sprite& a, huw::sprite& b)
 {

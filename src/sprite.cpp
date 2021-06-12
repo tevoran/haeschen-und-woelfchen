@@ -60,12 +60,11 @@ void huw::sprite::render()
 
 void huw::sprite::physics_update()
 {
-
 	//schwerkraft
 	acc.y+=GRAVITY*m_game->delta_t;
 
 	//position aktualisieren
-	pos.x=pos.x+acc.x*m_game->delta_t;	
+	pos.x=pos.x+acc.x*m_game->delta_t;
 	pos.y=pos.y+acc.y*m_game->delta_t;
 
 	//boden
