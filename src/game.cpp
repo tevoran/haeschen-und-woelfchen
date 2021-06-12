@@ -27,6 +27,9 @@ huw::game::game()
 	{
 		std::cout << "Keyboard not available" << std::endl;
 	}
+
+	//initialisierung vom frame timer
+	m_old_frame=steady_clock::now();
 }
 
 huw::game::~game()
@@ -46,7 +49,12 @@ void huw::game::update(bool& quit)
 		}
 	}
 
-
 	SDL_RenderPresent(m_renderer);
 	SDL_RenderClear(m_renderer);
+
+	//Frametime
+	m_new_frame=steady_clock::now();
+ 	duration<float> frame_delta_tmp = duration_cast<duration<float>>(m_new_frame - m_old_frame);
+ 	m_old_frame=m_new_frame;
+ 	delta_t=frame_delta_tmp.count();
 }

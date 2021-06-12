@@ -1,9 +1,12 @@
 #include <iostream>
+#include <chrono>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
 #define PLAYER_SIZE 64
+
+using namespace std::chrono;
 
 namespace huw
 {
@@ -12,9 +15,16 @@ namespace huw
 	private:
 		SDL_Window *m_window=NULL;
 		SDL_Event m_event;
+
+		//frame time timer
+		steady_clock::time_point m_old_frame;
+		steady_clock::time_point m_new_frame;
 	public:
 		SDL_Renderer *m_renderer=NULL;
 		const uint8_t *keyboard_state=NULL;
+
+		//frametime
+		float delta_t; //in sekunden
 	public:
 		game();
 		~game();
