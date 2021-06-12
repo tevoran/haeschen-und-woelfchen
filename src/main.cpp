@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 	huw::sprite hase("../assets/Haeschen1.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE);
 	huw::sprite wolf("../assets/Woelfchen1.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE);
 	huw::player player(&hase, &wolf, &game);
-	huw::level level(huw::level1, game);
+	huw::level level(huw::level1, &game);
 
 	bool quit=false;
 	while(!quit)
@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
 		background.render();
 		level.render();
 		player.update();
+		level.collision(player);
 		game.update(quit);
 	}
 }

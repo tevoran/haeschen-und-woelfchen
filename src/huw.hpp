@@ -3,6 +3,7 @@
 #include <iostream>
 #include <chrono>
 #include <vector>
+#include <cmath>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
@@ -48,7 +49,7 @@ namespace huw
 		SDL_Texture *m_texture=NULL;
 		huw::game *m_game=NULL;
 		SDL_Rect m_src_rect;
-		
+
 	public:
 		huw::vec2 pos; //aktuelle position
 		huw::vec2 acc; //aktuelle beschleunigung
@@ -65,21 +66,17 @@ namespace huw
 	{
 	private:
 		huw::game *m_game=NULL;
-		huw::sprite *m_hase=NULL;
-		huw::sprite *m_wolf=NULL;
 		huw::sprite *m_active_char=NULL;
 	public:
+		huw::sprite *m_hase=NULL;
+		huw::sprite *m_wolf=NULL;
 		player(huw::sprite *hase, huw::sprite *wolf, huw::game *game);
 		void update(); //Player zeichnen, Steuerung und so weiter
 
 	};
 
 	bool collision(huw::sprite& a, huw::sprite& b);
-	bool coll_up(huw::sprite& a);
-	bool coll_down(huw::sprite& a);
-	bool coll_right(huw::sprite& a);
-	bool coll_left(huw::sprite& a);
-	bool coll_all(huw::sprite& a);
+
 
 }
 
