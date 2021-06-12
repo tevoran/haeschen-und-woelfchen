@@ -8,6 +8,7 @@
 int main(int argc, char *argv[])
 {
 	huw::game game;
+	huw::sprite background("../assets/DarkGhetto1.png", & game, 0, 0, 640, 360, RESX, RESY);
 	huw::sprite hase("../assets/Haeschen1.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE);
 	huw::sprite wolf("../assets/Woelfchen1.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE);
 	huw::player player(&hase, &wolf, &game);
@@ -16,6 +17,7 @@ int main(int argc, char *argv[])
 	bool quit=false;
 	while(!quit)
 	{
+		background.render();
 		level.render();
 		player.update();
 		game.update(quit);
