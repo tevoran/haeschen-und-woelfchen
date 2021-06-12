@@ -10,10 +10,11 @@ int main(int argc, char *argv[])
 	huw::sprite hase2("../assets/Haeschen1.png", &game, 0, 0, 32, 32);
 	huw::player player(&hase1, &hase2, &game);
 
-	while(1)
+	bool quit=false;
+	while(!quit)
 	{
 		player.update();
-		game.update();
+		game.update(quit);
 	}
 	SDL_Delay(1000);
-} 
+}

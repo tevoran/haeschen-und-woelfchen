@@ -11,13 +11,14 @@ namespace huw
 	{
 	private:
 		SDL_Window *m_window=NULL;
+		SDL_Event m_event;
 	public:
 		SDL_Renderer *m_renderer=NULL;
 		const uint8_t *keyboard_state=NULL;
 	public:
 		game();
 		~game();
-		void update();
+		void update(bool& quit);
 	};
 
 	class sprite
@@ -26,10 +27,13 @@ namespace huw
 		SDL_Texture *m_texture=NULL;
 		huw::game *m_game=NULL;
 		SDL_Rect m_src_rect;
-		SDL_Rect m_dst_rect;
+	public:
+		SDL_Rect dst_rect; //Zielposition und Größe
+
 	public:
 		sprite(const char* file_path, huw::game *game, int x, int y, int w, int h); //Angaben in Pixeln
 		void render(int x, int y, int w, int h);
+		void render();
 	};
 
 	class player
@@ -39,10 +43,6 @@ namespace huw
 		huw::sprite *m_hase=NULL;
 		huw::sprite *m_wolf=NULL;
 		huw::sprite *m_active_char=NULL;
-
-		//charakter positionen
-		SDL_Rect m_hase_pos;
-		SDL_Rect m_wolf_pos;
 	public:
 		player(huw::sprite *hase, huw::sprite *wolf, huw::game *game);
 		void update(); //Player zeichnen, Steuerung und so weiter

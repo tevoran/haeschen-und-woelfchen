@@ -27,11 +27,20 @@ huw::sprite::sprite(const char* file_path, huw::game *game, int x, int y, int w,
 
 void huw::sprite::render(int x, int y, int w, int h)
 {
-	m_dst_rect.x=x;
-	m_dst_rect.y=y;
-	m_dst_rect.w=w;
-	m_dst_rect.h=h;
-	if(SDL_RenderCopy(m_game->m_renderer, m_texture, &m_src_rect, &m_dst_rect)!=0)
+	dst_rect.x=x;
+	dst_rect.y=y;
+	dst_rect.w=w;
+	dst_rect.h=h;
+	if(SDL_RenderCopy(m_game->m_renderer, m_texture, &m_src_rect, &dst_rect)!=0)
+	{
+		std::cout << "can't draw" << std::endl;
+		std::cout << "ERROR: " << SDL_GetError() << std::endl;
+	}
+}
+
+void huw::sprite::render()
+{
+	if(SDL_RenderCopy(m_game->m_renderer, m_texture, &m_src_rect, &dst_rect)!=0)
 	{
 		std::cout << "can't draw" << std::endl;
 		std::cout << "ERROR: " << SDL_GetError() << std::endl;

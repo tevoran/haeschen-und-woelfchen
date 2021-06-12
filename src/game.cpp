@@ -35,9 +35,18 @@ huw::game::~game()
 	SDL_Quit();
 }
 
-void huw::game::update()
+void huw::game::update(bool& quit)
 {
-	SDL_PumpEvents(); //updaten der Eventqueue
+	//Eventhandling
+	while(SDL_PollEvent(&m_event))
+	{
+		if(m_event.type==SDL_QUIT)
+		{
+			quit=true;
+		}
+	}
+
+
 	SDL_RenderPresent(m_renderer);
 	SDL_RenderClear(m_renderer);
 }

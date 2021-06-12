@@ -6,13 +6,18 @@ huw::player::player(huw::sprite *hase, huw::sprite *wolf, huw::game *game)
 	m_hase=hase;
 	m_wolf=wolf;
 
-	m_active_char=m_wolf;
+	m_active_char=m_hase;
 
 	//Positionen setzen
-	m_hase_pos.x=0;
-	m_hase_pos.y=0;
-	m_wolf_pos.x=250;
-	m_wolf_pos.y=0;
+	m_hase->dst_rect.x=0;
+	m_hase->dst_rect.y=0;
+	m_wolf->dst_rect.x=250;
+	m_wolf->dst_rect.y=0;
+
+	m_wolf->dst_rect.w=PLAYER_SIZE;
+	m_wolf->dst_rect.h=PLAYER_SIZE;
+	m_hase->dst_rect.w=PLAYER_SIZE;
+	m_hase->dst_rect.h=PLAYER_SIZE;
 
 }
 
@@ -21,27 +26,25 @@ void huw::player::update()
 	//steuerung vom spieler
 	if(m_game->keyboard_state[SDL_SCANCODE_D])
 	{
-		std::cout << m_wolf_pos.x << std::endl;
 		if(m_active_char==m_hase)
 		{
-			m_hase_pos.x+=1;
+			m_hase->dst_rect.x+=1;
 		}
 		if(m_active_char==m_wolf)
 		{
-			m_wolf_pos.x+=1;
+			m_wolf->dst_rect.x+=1;
 		}
 	}
 
 	if(m_game->keyboard_state[SDL_SCANCODE_A])
 	{
-		std::cout << m_wolf_pos.x << std::endl;
 		if(m_active_char==m_hase)
 		{
-			m_hase_pos.x-=1;
+			m_hase->dst_rect.x-=1;
 		}
 		if(m_active_char==m_wolf)
 		{
-			m_wolf_pos.x-=1;
+			m_wolf->dst_rect.x-=1;
 		}
 	}
 
@@ -68,6 +71,6 @@ void huw::player::update()
 	}
 	
 	//render beide Player Charaktere
-	m_hase->render(m_hase_pos.x, m_hase_pos.y, PLAYER_SIZE, PLAYER_SIZE);
-	m_wolf->render(m_wolf_pos.x, m_wolf_pos.y, PLAYER_SIZE, PLAYER_SIZE);
+	m_hase->render();
+	m_wolf->render();
 }
