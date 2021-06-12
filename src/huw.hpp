@@ -48,9 +48,7 @@ namespace huw
 		SDL_Texture *m_texture=NULL;
 		huw::game *m_game=NULL;
 		SDL_Rect m_src_rect;
-		float old_xpos;
-		float old_ypos;
-
+		
 	public:
 		huw::vec2 pos; //aktuelle position
 		huw::vec2 acc; //aktuelle beschleunigung

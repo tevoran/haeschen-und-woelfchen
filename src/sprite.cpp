@@ -29,8 +29,6 @@ huw::sprite::sprite(const char* file_path, huw::game *game, int x, int y, int w,
 
 	pos.x=0;
 	pos.y=0;
-	old_xpos=0;
-	old_ypos=0;
 	acc.x=0;
 	acc.y=0;
 }
@@ -67,14 +65,9 @@ void huw::sprite::physics_update()
 	acc.y+=GRAVITY*m_game->delta_t;
 
 	//position aktualisieren
-	if(coll_right(*this) && coll_left(*this)){
-		pos.x=pos.x+acc.x*m_game->delta_t;
-		old_xpos = pos.x;
-	}	
-	if(coll_up(*this) && coll_down(*this)){
-		pos.y=pos.y+acc.y*m_game->delta_t;
-		old_ypos = pos.y;
-	}
+	pos.x=pos.x+acc.x*m_game->delta_t;	
+	pos.y=pos.y+acc.y*m_game->delta_t;
+
 	//boden
 	if((pos.y+dst_rect.h)>RESY)
 	{
