@@ -95,6 +95,47 @@ void huw::player::update()
 		}	
 	}
 
+	//jump
+	static float acceleration_time_jump=0;
+	if(m_game->keyboard_state[SDL_SCANCODE_W])
+	{
+		bool hase_standing = (m_hase->pos.y == RESY - m_hase->dst_rect.h);
+		bool wolf_standing = (m_wolf->pos.y == RESY - m_wolf->dst_rect.h);
+		acceleration_time_jump+=m_game->delta_t;
+		if(acceleration_time_jump<ACCELERATION_DURATION_VERTICAL)
+		{
+			if(m_active_char==m_hase && hase_standing)
+			{
+				m_hase->acc.y-=HASE_ACCELERATION_VERTICAL;
+			}
+			if(m_active_char==m_wolf && wolf_standing)
+			{
+				m_wolf->acc.y-=WOLF_ACCELERATION_VERTICAL;
+			}
+		}
+	}
+	//decelleration
+	else
+	{
+		acceleration_time_jump=0;
+		if(m_active_char==m_hase && m_hase->acc.y<0)
+		{
+			m_hase->acc.y+=HASE_DECELERATION_VERTICAL*m_game->delta_t;
+			if(m_hase->acc.y>0)
+			{
+				m_hase->acc.y=0;
+			}
+		}
+		if(m_active_char==m_wolf && m_wolf->acc.y<0)
+		{
+			m_wolf->acc.y+=WOLF_DECELERATION_VERTICAL*m_game->delta_t;
+			if(m_wolf->acc.y>0)
+			{
+				m_wolf->acc.y=0;
+			}
+		}	
+	}	
+
 	//charakter wechseln
 	static bool key_lshift_down=false;
 	if(m_game->keyboard_state[SDL_SCANCODE_LSHIFT])
