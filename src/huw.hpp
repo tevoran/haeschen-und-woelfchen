@@ -46,11 +46,11 @@ namespace huw
 		SDL_Texture *m_texture=NULL;
 		huw::game *m_game=NULL;
 		SDL_Rect m_src_rect;
-		SDL_Rect dst_rect; //Zielposition und Größe
 
 	public:
 		huw::vec2 pos; //aktuelle position
 		huw::vec2 acc; //aktuelle beschleunigung
+		SDL_Rect dst_rect; //Zielposition und Größe
 
 	public:
 		sprite(const char* file_path, huw::game *game, int x, int y, int w, int h, int target_w, int target_h); //Angaben in Pixeln
@@ -71,5 +71,7 @@ namespace huw
 		void update(); //Player zeichnen, Steuerung und so weiter
 
 	};
+
+	bool collision(huw::sprite& a, huw::sprite& b);
 
 }
