@@ -77,11 +77,6 @@ namespace huw
 	};
 
 	bool collision(huw::sprite& a, huw::sprite& b);
-	bool coll_up(huw::sprite& a);
-	bool coll_down(huw::sprite& a);
-	bool coll_right(huw::sprite& a);
-	bool coll_left(huw::sprite& a);
-	bool coll_all(huw::sprite& a);
 
 }
 

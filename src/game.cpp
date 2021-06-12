@@ -16,7 +16,7 @@ huw::game::game()
 		std::cout << "RENDERER is bad anc evil and doesn't work" << std::endl;
 	}
 
-	SDL_SetRenderDrawColor(m_renderer, 0,0,0,0); //schwarzer Hintergrund
+	SDL_SetRenderDrawColor(m_renderer, 13,11,84,0); //schwarzer Hintergrund
 
 	std::cout << "initializing SDL2_image" << std::endl;
 	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
