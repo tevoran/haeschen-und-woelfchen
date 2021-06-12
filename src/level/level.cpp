@@ -15,10 +15,20 @@ huw::level::level(uint8_t level[11][20], huw::game& game)
 					abfall[abfall.size()-1].pos.y=iy*PLAYER_SIZE;
 					abfall[abfall.size()-1].pos.x=ix*PLAYER_SIZE;
 				break;
-				case NEON:
-					neon.push_back(huw::sprite("../assets/Leuchtreklame.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
-					neon[neon.size()-1].pos.x=ix*PLAYER_SIZE;
-					neon[neon.size()-1].pos.y=iy*PLAYER_SIZE;
+				case NEON_L:
+					neon_l.push_back(huw::sprite("../assets/NeonL.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
+					neon_l[neon_l.size()-1].pos.x=ix*PLAYER_SIZE;
+					neon_l[neon_l.size()-1].pos.y=iy*PLAYER_SIZE;
+				break;
+				case NEON_M:
+					neon_m.push_back(huw::sprite("../assets/NeonM.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
+					neon_m[neon_m.size()-1].pos.x=ix*PLAYER_SIZE;
+					neon_m[neon_m.size()-1].pos.y=iy*PLAYER_SIZE;
+				break;
+				case NEON_R:
+					neon_r.push_back(huw::sprite("../assets/NeonR.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
+					neon_r[neon_r.size()-1].pos.x=ix*PLAYER_SIZE;
+					neon_r[neon_r.size()-1].pos.y=iy*PLAYER_SIZE;
 				break;
 			}
 		}
@@ -32,8 +42,18 @@ void huw::level::render()
 		abfall[i].render();
 	}
 
-	for(int i=0; i<neon.size(); i++)
+	for(int i=0; i<neon_l.size(); i++)
 	{
-		neon[i].render();
+		neon_l[i].render();
+	}
+
+		for(int i=0; i<neon_m.size(); i++)
+	{
+		neon_m[i].render();
+	}
+
+		for(int i=0; i<neon_r.size(); i++)
+	{
+		neon_r[i].render();
 	}
 }
