@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <vector>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
@@ -83,3 +84,5 @@ namespace huw
 	bool coll_all(huw::sprite& a);
 
 }
+
+#include <level/level.hpp>
