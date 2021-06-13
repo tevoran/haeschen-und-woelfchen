@@ -76,6 +76,18 @@ namespace huw
 
 	};
 
+	class text
+	{
+	private:
+		SDL_Texture *text_texture=NULL;
+		huw::game *m_game=NULL;
+		int m_w;
+		int m_h;
+	public:
+		text(huw::game *game, const char *text, SDL_Color& text_color);
+		void render(int x, int y);
+	};
+
 	bool collision(huw::sprite& a, huw::sprite& b);
 
 }

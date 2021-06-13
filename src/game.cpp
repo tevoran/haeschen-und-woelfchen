@@ -23,7 +23,7 @@ huw::game::game()
 
 	std::cout << "initializing SDL2_ttf" << std::endl;
 	TTF_Init();
-	font=TTF_OpenFont("../assets/font/Retroscape.ttf", 48);
+	font=TTF_OpenFont("../assets/font/Retroscape.ttf", 25);
 	if(font!=NULL)
 	{
 		std::cout << "Font was loaded" << std::endl;
