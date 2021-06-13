@@ -24,6 +24,10 @@ int main(int argc, char *argv[])
 		background.render();
 		level.enemy_update();
 		level.render();
+		if(level.done(player))
+		{
+			std::cout << "LEVEL GESCHAFFT" << std::endl;
+		}
 		player.update(); //muss vor der level kollision sein
 		level.collision(player);
 

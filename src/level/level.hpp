@@ -36,13 +36,12 @@ namespace huw
 
 
 	public:
-
 		level(uint8_t level[11][20], huw::game *game, huw::player& player);
 		void render();
 		void enemy_update();
 		void collision(huw::player& player);
 		bool check_coll(huw::player& player, std::vector<huw::sprite> &objects);
-
+		bool done(huw::player& player);
 	};
 
 	void level_scripts(int current_level, huw::game& game);
