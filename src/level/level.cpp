@@ -13,6 +13,8 @@ huw::level::level(uint8_t level[11][20], huw::game *game, huw::player& player)
 					abfall.push_back(huw::sprite("../assets/Muelltonne.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
 					abfall[abfall.size()-1].pos.y=iy*PLAYER_SIZE;
 					abfall[abfall.size()-1].pos.x=ix*PLAYER_SIZE;
+					//parameter hinzufügen
+					abfall_active.push_back(true);
 				break;
 				case NEON_L:
 					neon_l.push_back(huw::sprite("../assets/NeonL.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
@@ -39,8 +41,13 @@ huw::level::level(uint8_t level[11][20], huw::game *game, huw::player& player)
 					taube[taube.size()-1].pos.x=ix*PLAYER_SIZE;
 					taube[taube.size()-1].pos.y=iy*PLAYER_SIZE;
 
+					taube_tot.push_back(huw::sprite("../assets/TaubeTot.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
+					taube_tot[taube_tot.size()-1].pos.x=ix*PLAYER_SIZE;
+					taube_tot[taube_tot.size()-1].pos.y=iy*PLAYER_SIZE;
+
 					//parameter hinzufügen
 					taube_richtung.push_back(false); //links
+					taube_alive.push_back(true);
 				break;
 				case GHETTO:
 					ghetto.push_back(huw::sprite("../assets/GhettoOffNeon.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
@@ -70,7 +77,8 @@ void huw::level::render()
 {
 	for(unsigned int i=0; i<abfall.size(); i++)
 	{
-		abfall[i].render();
+		if(abfall_active[i])
+			abfall[i].render();
 	}
 	for(unsigned int i=0; i<neon_l.size(); i++)
 	{
@@ -94,7 +102,11 @@ void huw::level::render()
 
 	for(unsigned int i=0; i<taube.size(); i++)
 	{
-		taube[i].render();
+		if(taube_alive[i])
+			taube[i].render();
+		else{
+			taube_tot[i].render();
+		}
 	}
 
 	if(!activated){
@@ -133,17 +145,33 @@ void huw::level::enemy_update()
 }
 
 void huw::level::collision(huw::player& player){
+
+
 	check_coll(player, neon_l);
 	check_coll(player, neon_m);
 	check_coll(player, neon_r);
 	check_coll(player, neon);
-	check_coll(player, abfall);
-	if(check_coll(player, taube)){
-		//std::cout << "RIP" << std::endl;
+	if(!activated){
+		check_coll(player, abfall);
+		if(check_coll(player, taube)){
+			//std::cout << "RIP" << std::endl;
+		}
+		if(huw::collision(*player.m_hase, ghetto[0]) && m_game->keyboard_state[SDL_SCANCODE_E]){
+			std::cout << "aktiviert" << std::endl;
+			activated=true;
+		}
 	}
-	if(huw::collision(*player.m_hase, ghetto[0]) && m_game->keyboard_state[SDL_SCANCODE_E] && !activated){
-		std::cout << "aktiviert" << std::endl;
-		activated=true;
+	else{
+		for(int i=0;i<abfall.size();i++){
+			if(huw::collision(*player.m_wolf, abfall[i])){
+				abfall_active[i]=false;
+			}	
+		}
+		for(int i=0;i<taube.size();i++){
+			if(huw::collision(*player.m_wolf, taube[i])){
+				taube_alive[i]=false;
+			}	
+		}
 	}
 	if(player.m_active_char->pos.y+PLAYER_SIZE>=RESY)
 	{
