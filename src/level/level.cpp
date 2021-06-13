@@ -1,6 +1,6 @@
 #include <huw.hpp>
 
-huw::level::level(uint8_t level[11][20], huw::game *game)
+huw::level::level(uint8_t level[11][20], huw::game *game, huw::player& player)
 {
 	m_game=game;
 	for(int iy=0; iy<LEVEL_Y; iy++)
@@ -38,9 +38,19 @@ huw::level::level(uint8_t level[11][20], huw::game *game)
 					taube_richtung.push_back(false); //links
 				break;
 				case GHETTO:
-					ghetto.push_back(huw::sprite("../assets/GhettoOff.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
+					ghetto.push_back(huw::sprite("../assets/GhettoOffNeon.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
 					ghetto[ghetto.size()-1].pos.x=ix*PLAYER_SIZE;
 					ghetto[ghetto.size()-1].pos.y=iy*PLAYER_SIZE;
+				break;
+
+				case WOLF:
+					player.m_wolf->pos.x=ix*PLAYER_SIZE;
+					player.m_wolf->pos.y=iy*PLAYER_SIZE;
+				break;
+
+				case HASE:
+					player.m_hase->pos.x=ix*PLAYER_SIZE;
+					player.m_hase->pos.y=iy*PLAYER_SIZE;
 				break;
 			}
 		}

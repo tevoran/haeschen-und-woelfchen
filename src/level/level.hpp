@@ -7,6 +7,8 @@
 #define NEON_R 4
 #define TAUBE 5
 #define GHETTO 6
+#define WOLF 7
+#define HASE 8
 
 
 #define LEVEL_X 20
@@ -34,7 +36,7 @@ namespace huw
 
 	public:
 
-		level(uint8_t level[11][20], huw::game *game);
+		level(uint8_t level[11][20], huw::game *game, huw::player& player);
 		void render();
 		void enemy_update();
 		void collision(huw::player& player);
