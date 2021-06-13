@@ -28,6 +28,7 @@ namespace huw
 		level(uint8_t level[11][20], huw::game *game);
 		void render();
 		void collision(huw::player& player);
+		void check_coll(huw::player& player, std::vector<huw::sprite> &objects);
 
 	};
 }

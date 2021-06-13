@@ -56,11 +56,17 @@ void huw::level::render()
 	}
 }
 
-void huw::level::collision(huw::player& player)
-{
-	for(int i=0; i<abfall.size(); i++)
+void huw::level::collision(huw::player& player){
+	check_coll(player, abfall);
+	check_coll(player, neon_l);
+	check_coll(player, neon_m);
+	check_coll(player, neon_r);
+}
+
+void huw::level::check_coll(huw::player& player, std::vector<huw::sprite> &objects){
+	for(int i=0; i<objects.size(); i++)
 	{
-		if(huw::collision(*player.m_wolf, abfall[i]))
+		if(huw::collision(*player.m_wolf, objects[i]))
 		{
 			bool collided=false;
 			//von oben
@@ -92,7 +98,7 @@ void huw::level::collision(huw::player& player)
 				player.m_wolf->acc.y=-GRAVITY*m_game->delta_t;
 			}
 		}
-		if(huw::collision(*player.m_hase, abfall[i]))
+		if(huw::collision(*player.m_hase, objects[i]))
 		{
 			bool collided=false;
 			//von oben
