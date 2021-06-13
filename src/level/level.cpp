@@ -142,8 +142,6 @@ void huw::level::enemy_update()
 }
 
 void huw::level::collision(huw::player& player){
-
-
 	check_coll(player, neon_l);
 	check_coll(player, neon_m);
 	check_coll(player, neon_r);
@@ -151,7 +149,7 @@ void huw::level::collision(huw::player& player){
 	if(!activated){
 		check_coll(player, abfall);
 		if(check_coll(player, taube)){
-			//std::cout << "RIP" << std::endl;
+			m_game_over=true;
 		}
 		if(huw::collision(*player.m_hase, ghetto[0]) && m_game->keyboard_state[SDL_SCANCODE_E]){
 			std::cout << "aktiviert" << std::endl;
@@ -172,7 +170,7 @@ void huw::level::collision(huw::player& player){
 		}
 
 		if(check_coll(player, taube, true)){
-			//std::cout << "RIP" << std::endl;
+			m_game_over=true;
 		}
 
 		check_coll(player, abfall, true);
@@ -282,4 +280,9 @@ bool huw::level::done(huw::player& player)
 		return true;
 	}
 	return false;
+}
+
+bool huw::level::game_over(huw::player& player)
+{
+	return m_game_over;
 }
