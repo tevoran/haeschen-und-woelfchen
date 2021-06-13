@@ -26,6 +26,7 @@ namespace huw
 
 	public:
 		std::vector<huw::sprite> abfall;
+		std::vector<bool> abfall_active;
 		std::vector<huw::sprite> neon_l;
 		std::vector<huw::sprite> neon_m;
 		std::vector<huw::sprite> neon_r;
@@ -34,7 +35,9 @@ namespace huw
 
 		//gegner
 		std::vector<huw::sprite> taube;
+		std::vector<huw::sprite> taube_tot;
 		std::vector<bool> taube_richtung;
+		std::vector<bool> taube_alive;
 
 
 	public:

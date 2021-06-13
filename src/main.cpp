@@ -14,12 +14,11 @@ int main(int argc, char *argv[])
 	huw::sprite hase("../assets/Haeschen1.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE);
 	huw::sprite wolf("../assets/Woelfchen1.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE);
 	huw::player player(&hase, &wolf, &game);
-
 	std::vector<huw::level> level;
 	level.push_back(huw::level(huw::levelTest, &game, player)); //level 0
 
-
 	int current_level=0;
+
 
 	bool quit=false;
 	while(!quit)
