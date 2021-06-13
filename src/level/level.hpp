@@ -31,4 +31,6 @@ namespace huw
 		void check_coll(huw::player& player, std::vector<huw::sprite> &objects);
 
 	};
+
+	void level_scripts(int current_level, huw::game& game);
 }

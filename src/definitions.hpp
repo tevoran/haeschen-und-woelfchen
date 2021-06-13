@@ -1,4 +1,7 @@
+#pragma once
 #include <huw.hpp>
+
+
 
 #define GRAVITY 325
 

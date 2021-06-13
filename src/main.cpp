@@ -3,7 +3,7 @@
 
 #undef main
 
-
+SDL_Color TEXT_COLOR={228,20,228,0};
 
 int main(int argc, char *argv[])
 {
@@ -16,12 +16,7 @@ int main(int argc, char *argv[])
 	huw::player player(&hase, &wolf, &game);
 	huw::level level(huw::level1, &game);
 
-	//text preparation
-	text_color={228,20,228,0};
-
-	huw::text wall_text1(&game, "HAESCHEN", text_color, true);
-	huw::text wall_text2(&game, "WOELFCHEN", text_color, true);
-	huw::text tut_text1(&game, "W:JUMP  D:MOVE RIGHT  A:MOVE LEFT", text_color, false);	
+	int current_level=1;
 
 	bool quit=false;
 	while(!quit)
@@ -30,9 +25,9 @@ int main(int argc, char *argv[])
 		level.render();
 		player.update(); //muss vor der level kollision sein
 		level.collision(player);
-		wall_text1.render((int)(0.125*(float)RESX),(int)(0.375*(float)RESY));
-		wall_text2.render((int)(0.64*(float)RESX),(int)(0.485*(float)RESY));
-		tut_text1.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
+
+		huw::level_scripts(current_level, game);
+
 		game.update(quit);
 	}
 }
