@@ -6,6 +6,8 @@
 #define NEON_M 3
 #define NEON_R 4
 #define TAUBE 5
+#define GHETTO 6
+
 
 #define LEVEL_X 20
 #define LEVEL_Y 11
@@ -23,7 +25,8 @@ namespace huw
 		std::vector<huw::sprite> neon_l;
 		std::vector<huw::sprite> neon_m;
 		std::vector<huw::sprite> neon_r;
-		std::vector<huw::sprite> taube;		
+		std::vector<huw::sprite> taube;
+		std::vector<huw::sprite> ghetto;				
 
 	public:
 
