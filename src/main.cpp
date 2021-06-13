@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	huw::level level(huw::level1, &game);
 
 	//text preparation
-	text_color={228,225,228,0};
+	text_color={228,20,228,0};
 
 	huw::text wall_text1(&game, "HAESCHEN", text_color, true);
 	huw::text wall_text2(&game, "WOELFCHEN", text_color, true);
