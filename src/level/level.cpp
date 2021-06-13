@@ -30,12 +30,17 @@ huw::level::level(uint8_t level[11][20], huw::game *game)
 					neon_r[neon_r.size()-1].pos.y=iy*PLAYER_SIZE;
 				break;
 				case TAUBE:
-					taube.push_back(huw::sprite("../assets/Taube.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
+					taube.push_back(huw::sprite("../assets/Taube2.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
 					taube[taube.size()-1].pos.x=ix*PLAYER_SIZE;
 					taube[taube.size()-1].pos.y=iy*PLAYER_SIZE;
 
 					//parameter hinzufügen
 					taube_richtung.push_back(false); //links
+				break;
+				case GHETTO:
+					ghetto.push_back(huw::sprite("../assets/GhettoOff.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
+					ghetto[ghetto.size()-1].pos.x=ix*PLAYER_SIZE;
+					ghetto[ghetto.size()-1].pos.y=iy*PLAYER_SIZE;
 				break;
 			}
 		}
@@ -66,6 +71,11 @@ void huw::level::render()
 	for(unsigned int i=0; i<taube.size(); i++)
 	{
 		taube[i].render();
+	}
+
+	for(unsigned int i=0; i<ghetto.size(); i++)
+	{
+		ghetto[i].render();
 	}
 }
 
