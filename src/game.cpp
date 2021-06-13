@@ -1,6 +1,6 @@
 #include <huw.hpp>
 
-huw::game::game()
+huw::game::game() 
 {
 	std::cout << "Starting the glorious and lovely game of Häschen und Wölfchen" << std::endl;
 	std::cout << "initializing SDL2" << std::endl;
