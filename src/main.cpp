@@ -14,7 +14,9 @@ int main(int argc, char *argv[])
 	huw::sprite hase("../assets/Haeschen1.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE);
 	huw::sprite wolf("../assets/Woelfchen1.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE);
 	huw::player player(&hase, &wolf, &game);
-	huw::level level(huw::level1, &game, player);
+
+	std::vector<huw::level> level;
+	level.push_back(huw::level(huw::level1, &game, player));
 
 	int current_level=1;
 
@@ -22,14 +24,14 @@ int main(int argc, char *argv[])
 	while(!quit)
 	{
 		background.render();
-		level.enemy_update();
-		level.render();
-		if(level.done(player))
+		level[0].enemy_update();
+		level[0].render();
+		if(level[0].done(player))
 		{
 			std::cout << "LEVEL GESCHAFFT" << std::endl;
 		}
 		player.update(); //muss vor der level kollision sein
-		level.collision(player);
+		level[0].collision(player);
 
 		huw::level_scripts(current_level, game);
 
