@@ -39,6 +39,7 @@ namespace huw
 		std::vector<bool> taube_richtung;
 		std::vector<bool> taube_alive;
 
+		bool m_game_over=false;
 
 	public:
 		level(uint8_t level[11][20], huw::game *game, huw::player& player);
@@ -47,6 +48,7 @@ namespace huw
 		void collision(huw::player& player);
 		bool check_coll(huw::player& player, std::vector<huw::sprite> &objects);
 		bool done(huw::player& player);
+		bool game_over(huw::player& player);
 	};
 
 	void level_scripts(int current_level, huw::game& game);
