@@ -62,17 +62,35 @@ void huw::level::collision(huw::player& player)
 	{
 		if(huw::collision(*player.m_wolf, abfall[i]))
 		{
-			/*
-			if(player.m_wolf->acc.x!=0)
+			bool collided=false;
+			//von oben
+			if(player.m_wolf->acc.y>0)
+			{
+				player.m_wolf->pos.y-=player.m_wolf->acc.y*m_game->delta_t;
+				player.m_wolf->acc.y=-GRAVITY*m_game->delta_t;
+				collided=true;
+			}
+			//von unten
+			if(player.m_wolf->acc.y<0 && collided==false)
+			{
+				player.m_wolf->pos.y-=player.m_wolf->acc.y*m_game->delta_t;
+				player.m_wolf->acc.y=0;
+			}
+
+			//von links
+			if(player.m_wolf->acc.x>0 && player.m_wolf->acc.y==0)
 			{
 				player.m_wolf->pos.x-=player.m_wolf->acc.x/(abs(player.m_wolf->acc.x));
 				player.m_wolf->acc.x=0;
+				player.m_wolf->acc.y=-GRAVITY*m_game->delta_t;
 			}
-			if(player.m_wolf->acc.y!=0)
+			//von rechts
+			if(player.m_wolf->acc.x<0 && player.m_wolf->acc.y==0)
 			{
-				player.m_wolf->pos.y-=player.m_wolf->acc.y/(abs(player.m_wolf->acc.y));
-				player.m_wolf->acc.y=0;
-			}*/
+				player.m_wolf->pos.x-=player.m_wolf->acc.x/(abs(player.m_wolf->acc.x));
+				player.m_wolf->acc.x=0;
+				player.m_wolf->acc.y=-GRAVITY*m_game->delta_t;
+			}
 		}
 		if(huw::collision(*player.m_hase, abfall[i]))
 		{
