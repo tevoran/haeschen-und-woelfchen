@@ -13,8 +13,6 @@ huw::level::level(uint8_t level[11][20], huw::game *game, huw::player& player)
 					abfall.push_back(huw::sprite("../assets/Muelltonne.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
 					abfall[abfall.size()-1].pos.y=iy*PLAYER_SIZE;
 					abfall[abfall.size()-1].pos.x=ix*PLAYER_SIZE;
-					//parameter hinzufügen
-					abfall_active.push_back(true);
 				break;
 				case NEON_L:
 					neon_l.push_back(huw::sprite("../assets/NeonL.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
@@ -164,7 +162,7 @@ void huw::level::collision(huw::player& player){
 		for(int i=0;i<abfall.size();i++){
 			if(huw::collision(*player.m_wolf, abfall[i])){
 				//abfall_active[i]=false;
-				abfall.erase(i);
+				abfall.erase(abfall.begin()+i);
 			}	
 		}
 		for(int i=0;i<taube.size();i++){
