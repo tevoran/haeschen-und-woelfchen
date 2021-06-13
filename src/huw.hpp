@@ -33,7 +33,8 @@ namespace huw
 	public:
 		SDL_Renderer *m_renderer=NULL;
 		const uint8_t *keyboard_state=NULL;
-		TTF_Font *font=NULL;
+		TTF_Font *font_big=NULL;
+		TTF_Font *font_small=NULL;
 
 		//frametime
 		float delta_t; //in sekunden
@@ -98,7 +99,7 @@ namespace huw
 		int m_w;
 		int m_h;
 	public:
-		text(huw::game *game, const char *text, SDL_Color& text_color);
+		text(huw::game *game, const char *text, SDL_Color& text_color, bool isBig);
 		void render(int x, int y);
 	};
 

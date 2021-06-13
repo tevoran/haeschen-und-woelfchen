@@ -19,8 +19,9 @@ int main(int argc, char *argv[])
 	//text preparation
 	text_color={228,225,228,0};
 
-	huw::text intro_text1(&game, "HAESCHEN", text_color);
-	huw::text intro_text2(&game, "WOELFCHEN", text_color);
+	huw::text wall_text1(&game, "HAESCHEN", text_color, true);
+	huw::text wall_text2(&game, "WOELFCHEN", text_color, true);
+	huw::text tut_text1(&game, "W:JUMP  D:MOVE RIGHT  A:MOVE LEFT", text_color, false);	
 
 	bool quit=false;
 	while(!quit)
@@ -29,8 +30,9 @@ int main(int argc, char *argv[])
 		level.render();
 		player.update(); //muss vor der level kollision sein
 		level.collision(player);
-		intro_text1.render((int)(0.125*(float)RESX),(int)(0.375*(float)RESY));
-		intro_text2.render((int)(0.64*(float)RESX),(int)(0.485*(float)RESY));
+		wall_text1.render((int)(0.125*(float)RESX),(int)(0.375*(float)RESY));
+		wall_text2.render((int)(0.64*(float)RESX),(int)(0.485*(float)RESY));
+		tut_text1.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
 		game.update(quit);
 	}
 }
