@@ -23,12 +23,16 @@ namespace huw
 		std::vector<huw::sprite> neon_l;
 		std::vector<huw::sprite> neon_m;
 		std::vector<huw::sprite> neon_r;
-		std::vector<huw::sprite> taube;		
+
+		//gegner
+		std::vector<huw::sprite> taube;
+		std::vector<bool> taube_richtung;
 
 	public:
 
 		level(uint8_t level[11][20], huw::game *game);
 		void render();
+		void enemy_update();
 		void collision(huw::player& player);
 		bool check_coll(huw::player& player, std::vector<huw::sprite> &objects);
 

@@ -33,6 +33,9 @@ huw::level::level(uint8_t level[11][20], huw::game *game)
 					taube.push_back(huw::sprite("../assets/Taube.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
 					taube[taube.size()-1].pos.x=ix*PLAYER_SIZE;
 					taube[taube.size()-1].pos.y=iy*PLAYER_SIZE;
+
+					//parameter hinzufügen
+					taube_richtung.push_back(false); //links
 				break;
 			}
 		}
@@ -66,6 +69,32 @@ void huw::level::render()
 	}
 }
 
+void huw::level::enemy_update()
+{
+	for(int i=0; i<taube.size(); i++)
+	{
+		bool collision_with_trash=false;
+		for(int i_tmp=0; i_tmp<abfall.size(); i_tmp++)
+		{
+			if(huw::collision(taube[i], abfall[i_tmp]))
+			{
+				collision_with_trash=true;
+			}
+		}
+		if(collision_with_trash==true)
+		{
+			taube_richtung[i]=(!taube_richtung[i]);
+		}
+		if(taube_richtung[i]==false) //links
+		{
+			taube[i].pos.x-=TAUBE_SPEED*m_game->delta_t;
+		}
+		else
+		{
+			taube[i].pos.x+=TAUBE_SPEED*m_game->delta_t;
+		}
+	}
+}
 
 void huw::level::collision(huw::player& player){
 	check_coll(player, neon_l);
@@ -73,7 +102,7 @@ void huw::level::collision(huw::player& player){
 	check_coll(player, neon_r);
 	check_coll(player, abfall);
 	if(check_coll(player, taube)){
-		std::cout << "RIP" << std::endl;
+		//std::cout << "RIP" << std::endl;
 	}
 	if(player.m_active_char->pos.y+PLAYER_SIZE>=RESY)
 	{
