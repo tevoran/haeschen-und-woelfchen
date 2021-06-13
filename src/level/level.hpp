@@ -19,6 +19,7 @@ namespace huw
 	{
 	private:
 		huw::game *m_game=NULL;
+		bool activated=false;
 
 	public:
 		std::vector<huw::sprite> abfall;
