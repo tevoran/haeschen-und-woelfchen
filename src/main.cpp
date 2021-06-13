@@ -16,7 +16,8 @@ int main(int argc, char *argv[])
 	huw::player player(&hase, &wolf, &game);
 
 	std::vector<huw::level> level;
-	level.push_back(huw::level(huw::level1, &game, player));
+	level.push_back(huw::level(huw::levelTest, &game, player));
+
 
 	int current_level=1;
 
