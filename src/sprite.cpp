@@ -67,6 +67,12 @@ void huw::sprite::physics_update()
 	pos.x=pos.x+acc.x*m_game->delta_t;
 	pos.y=pos.y+acc.y*m_game->delta_t;
 
+	if(pos.x<0)
+	{
+		pos.x=0;
+		acc.x=0;
+	}
+
 	//boden
 	if((pos.y+dst_rect.h)>RESY)
 	{
