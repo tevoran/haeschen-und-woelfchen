@@ -29,6 +29,11 @@ huw::level::level(uint8_t level[11][20], huw::game *game, huw::player& player)
 					neon_r[neon_r.size()-1].pos.x=ix*PLAYER_SIZE;
 					neon_r[neon_r.size()-1].pos.y=iy*PLAYER_SIZE;
 				break;
+				case NEON:
+					neon.push_back(huw::sprite("../assets/Neon.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
+					neon[neon.size()-1].pos.x=ix*PLAYER_SIZE;
+					neon[neon.size()-1].pos.y=iy*PLAYER_SIZE;
+				break;
 				case TAUBE:
 					taube.push_back(huw::sprite("../assets/Taube2.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
 					taube[taube.size()-1].pos.x=ix*PLAYER_SIZE;
@@ -82,6 +87,11 @@ void huw::level::render()
 		neon_r[i].render();
 	}
 
+	for(unsigned int i=0; i<neon.size(); i++)
+	{
+		neon[i].render();
+	}
+
 	for(unsigned int i=0; i<taube.size(); i++)
 	{
 		taube[i].render();
@@ -126,6 +136,7 @@ void huw::level::collision(huw::player& player){
 	check_coll(player, neon_l);
 	check_coll(player, neon_m);
 	check_coll(player, neon_r);
+	check_coll(player, neon);
 	check_coll(player, abfall);
 	if(check_coll(player, taube)){
 		//std::cout << "RIP" << std::endl;
