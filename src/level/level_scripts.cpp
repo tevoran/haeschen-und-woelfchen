@@ -24,10 +24,14 @@ void huw::level_scripts(int current_level, huw::game& game)
 	static huw::text tut_text9(&game, "!  LITTLE WOLF CAN EAT TRASH CANS  !", TEXT_COLOR, true);
 	static huw::text tut_text10(&game, "!  AND BEAT PIGEONS  !", TEXT_COLOR, true);
 
-	static huw::text tut_text11(&game, "!  CREDIT TEXT 1  !", TEXT_COLOR, true);
-	static huw::text tut_text12(&game, "!  CREDIT TEXT 2  !", TEXT_COLOR, true);
-	static huw::text tut_text13(&game, "!  CREDIT TEXT 3  !", TEXT_COLOR, true);
-	static huw::text tut_text14(&game, "!  PRESS ESC TO QUIT  !", TEXT_COLOR, true);
+	static huw::text tut_text11(&game, "HAESCHEN  UND  WOELFCHEN", TEXT_COLOR, true);
+	static huw::text tut_text12(&game, "IDEA  BY  TEAM  TOTE  TAUBE", TEXT_COLOR, true);
+	static huw::text tut_text13(&game, "PROGRAMMING:  JOHANNES  PFEIFFER  /  T3V", TEXT_COLOR, true);
+	static huw::text tut_text14(&game, "PROGRAMMING:  LAURENT  KUFFERT  /  BAKASILISK", TEXT_COLOR, true);
+	static huw::text tut_text15(&game, "ART:  HANNA EBNER  /  BIRALO", TEXT_COLOR, true);
+	static huw::text tut_text16(&game, "LEVEL  DESIGN:  SVEN  SEEFELD  /  IMPETO94", TEXT_COLOR, true);
+	static huw::text tut_text17(&game, "FOOD  SUPPORT:  SVEN  SEEFELD  /  IMPETO94", TEXT_COLOR, true);
+	static huw::text tut_text18(&game, "PRESS  ESC  TO  END", TEXT_COLOR, true);
 
 	//tutorial
 	if(current_level==0)
@@ -86,15 +90,15 @@ void huw::level_scripts(int current_level, huw::game& game)
 		}
 		if(intro_text<8 && intro_text>4)
 		{
-			tut_text8.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
+			tut_text8.render((int)(0.1*(float)RESX),(int)(0.225*(float)RESY));
 		}
 		if(intro_text<12 && intro_text>8)
 		{
-			tut_text9.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
+			tut_text9.render((int)(0.1*(float)RESX),(int)(0.425*(float)RESY));
 		}
 		if(intro_text<16 && intro_text>12)
 		{
-			tut_text10.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
+			tut_text10.render((int)(0.1*(float)RESX),(int)(0.625*(float)RESY));
 		}
 		if(intro_text>16)
 		{
@@ -102,35 +106,26 @@ void huw::level_scripts(int current_level, huw::game& game)
 		}
 	}
 
-	if(current_level==4){
+	if(current_level==4)
+	{
 		static float intro_text=0;
 		intro_text+=game.delta_t;
 
-		while(!(game.keyboard_state[SDL_SCANCODE_ESCAPE])){
-			if(intro_text<4){
-				{
+		while(!(game.keyboard_state[SDL_SCANCODE_ESCAPE]))
+		{
+					SDL_RenderPresent(game.m_renderer);
+					SDL_RenderClear(game.m_renderer);
 					tut_text11.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
-				}
-				if(intro_text<8 && intro_text>4)
-				{
-					tut_text12.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
-				}
-				if(intro_text<12 && intro_text>8)
-				{
-					tut_text13.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
-				}
-				if(intro_text<16 && intro_text>12)
-				{
-					tut_text14.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
-				}
-				if(intro_text>16)
-				{
-					intro_text=0;
-				}
+					tut_text12.render((int)(0.1*(float)RESX),(int)(0.125*(float)RESY));
+					tut_text13.render((int)(0.1*(float)RESX),(int)(0.225*(float)RESY));
+					tut_text14.render((int)(0.1*(float)RESX),(int)(0.325*(float)RESY));
+					tut_text15.render((int)(0.1*(float)RESX),(int)(0.425*(float)RESY));
+					tut_text16.render((int)(0.1*(float)RESX),(int)(0.525*(float)RESY));
+					tut_text17.render((int)(0.1*(float)RESX),(int)(0.625*(float)RESY));
+					tut_text18.render((int)(0.1*(float)RESX),(int)(0.725*(float)RESY));
 				while(SDL_PollEvent(&game.m_event))
 				{
 				}
-			}
 		}
 	}
 
