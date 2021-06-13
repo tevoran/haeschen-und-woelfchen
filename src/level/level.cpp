@@ -39,8 +39,12 @@ huw::level::level(uint8_t level[11][20], huw::game *game, huw::player& player)
 				break;
 				case GHETTO:
 					ghetto.push_back(huw::sprite("../assets/GhettoOffNeon.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
-					ghetto[ghetto.size()-1].pos.x=ix*PLAYER_SIZE;
-					ghetto[ghetto.size()-1].pos.y=iy*PLAYER_SIZE;
+					ghetto[0].pos.x=ix*PLAYER_SIZE;
+					ghetto[0].pos.y=iy*PLAYER_SIZE;
+
+					ghetto.push_back(huw::sprite("../assets/GhettoOnNeon.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
+					ghetto[1].pos.x=ix*PLAYER_SIZE;
+					ghetto[1].pos.y=iy*PLAYER_SIZE;
 				break;
 
 				case WOLF:
@@ -83,9 +87,11 @@ void huw::level::render()
 		taube[i].render();
 	}
 
-	for(unsigned int i=0; i<ghetto.size(); i++)
-	{
-		ghetto[i].render();
+	if(!activated){
+		ghetto[0].render();
+	}
+	else{
+		ghetto[1].render();
 	}
 }
 
@@ -123,6 +129,10 @@ void huw::level::collision(huw::player& player){
 	check_coll(player, abfall);
 	if(check_coll(player, taube)){
 		//std::cout << "RIP" << std::endl;
+	}
+	if(huw::collision(*player.m_hase, ghetto[0]) && m_game->keyboard_state[SDL_SCANCODE_E] && !activated){
+		std::cout << "aktiviert" << std::endl;
+		activated=true;
 	}
 	if(player.m_active_char->pos.y+PLAYER_SIZE>=RESY)
 	{
