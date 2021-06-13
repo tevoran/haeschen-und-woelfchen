@@ -6,8 +6,18 @@
 
 #IncludeRegexTransform: 
 
+../src/definitions.hpp
+huw.hpp
+-
+
 ../src/huw.hpp
 iostream
+-
+chrono
+-
+vector
+-
+cmath
 -
 SDL2/SDL.h
 -
@@ -15,8 +25,30 @@ SDL2/SDL_image.h
 -
 SDL2/SDL_ttf.h
 -
+definitions.hpp
+-
+level/level.hpp
+-
+
+../src/level/actual_levels.hpp
+level.hpp
+../src/level/level.hpp
+
+../src/level/level.hpp
+huw.hpp
+-
+
+/home/johannespfeiffer/Code/haeschen-und-woelfchen/src/game.cpp
+huw.hpp
+-
 
 /home/johannespfeiffer/Code/haeschen-und-woelfchen/src/main.cpp
+huw.hpp
+-
+level/actual_levels.hpp
+-
+
+/home/johannespfeiffer/Code/haeschen-und-woelfchen/src/sprite.cpp
 huw.hpp
 -
 

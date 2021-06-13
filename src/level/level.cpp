@@ -116,10 +116,10 @@ void huw::level::render()
 
 void huw::level::enemy_update()
 {
-	for(int i=0; i<taube.size(); i++)
+	for(unsigned int i=0; i<taube.size(); i++)
 	{
 		bool collision_with_trash=false;
-		for(int i_tmp=0; i_tmp<abfall.size(); i_tmp++)
+		for(unsigned int i_tmp=0; i_tmp<abfall.size(); i_tmp++)
 		{
 			if(huw::collision(taube[i], abfall[i_tmp]))
 			{
@@ -157,13 +157,13 @@ void huw::level::collision(huw::player& player){
 		}
 	}
 	else{
-		for(int i=0;i<abfall.size();i++){
+		for(unsigned int i=0;i<abfall.size();i++){
 			if(huw::collision(*player.m_wolf, abfall[i])){
 				//abfall_active[i]=false;
 				abfall.erase(abfall.begin()+i);
 			}	
 		}
-		for(int i=0;i<taube.size();i++){
+		for(unsigned int i=0;i<taube.size();i++){
 			if(huw::collision(*player.m_wolf, taube[i])){
 				taube_alive[i]=false;
 			}	
@@ -184,7 +184,7 @@ void huw::level::collision(huw::player& player){
 bool huw::level::check_coll(huw::player& player, std::vector<huw::sprite> &objects, bool onlyHase){
 	bool collided_wolf=false;
 	bool collided_hase=false;
-	for(int i=0; i<objects.size(); i++)
+	for(unsigned int i=0; i<objects.size(); i++)
 	{	if(!onlyHase)
 			if(huw::collision(*player.m_wolf, objects[i]))
 			{
