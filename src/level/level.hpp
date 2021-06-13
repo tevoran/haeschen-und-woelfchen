@@ -45,7 +45,7 @@ namespace huw
 		void render();
 		void enemy_update();
 		void collision(huw::player& player);
-		bool check_coll(huw::player& player, std::vector<huw::sprite> &objects);
+		bool check_coll(huw::player& player, std::vector<huw::sprite> &objects, bool onlyHase=false);
 		bool done(huw::player& player);
 	};
 

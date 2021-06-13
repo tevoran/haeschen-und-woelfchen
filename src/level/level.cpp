@@ -77,8 +77,7 @@ void huw::level::render()
 {
 	for(unsigned int i=0; i<abfall.size(); i++)
 	{
-		if(abfall_active[i])
-			abfall[i].render();
+		abfall[i].render();
 	}
 	for(unsigned int i=0; i<neon_l.size(); i++)
 	{
@@ -164,7 +163,8 @@ void huw::level::collision(huw::player& player){
 	else{
 		for(int i=0;i<abfall.size();i++){
 			if(huw::collision(*player.m_wolf, abfall[i])){
-				abfall_active[i]=false;
+				//abfall_active[i]=false;
+				abfall.erase(i);
 			}	
 		}
 		for(int i=0;i<taube.size();i++){
@@ -172,6 +172,12 @@ void huw::level::collision(huw::player& player){
 				taube_alive[i]=false;
 			}	
 		}
+
+		if(check_coll(player, taube, true)){
+			//std::cout << "RIP" << std::endl;
+		}
+
+		check_coll(player, abfall, true);
 	}
 	if(player.m_active_char->pos.y+PLAYER_SIZE>=RESY)
 	{
@@ -179,51 +185,51 @@ void huw::level::collision(huw::player& player){
 	}
 }
 
-bool huw::level::check_coll(huw::player& player, std::vector<huw::sprite> &objects){
+bool huw::level::check_coll(huw::player& player, std::vector<huw::sprite> &objects, bool onlyHase){
 	bool collided_wolf=false;
 	bool collided_hase=false;
 	for(int i=0; i<objects.size(); i++)
-	{
-		if(huw::collision(*player.m_wolf, objects[i]))
-		{
-			collided_wolf=false;
-			//von oben 
-			if(player.m_wolf->acc.y>0 && player.m_wolf_y_plus==false)
+	{	if(!onlyHase)
+			if(huw::collision(*player.m_wolf, objects[i]))
 			{
-				player.m_wolf->pos.y-=player.m_wolf->acc.y*m_game->delta_t;
-				player.m_wolf->acc.y=-GRAVITY*m_game->delta_t;
-				collided_wolf=true;
-				player.m_wolf_y_plus=true;
-				if(player.m_active_char==player.m_wolf)
+				collided_wolf=false;
+				//von oben 
+				if(player.m_wolf->acc.y>0 && player.m_wolf_y_plus==false)
 				{
-					player.can_jump=true;					
+					player.m_wolf->pos.y-=player.m_wolf->acc.y*m_game->delta_t;
+					player.m_wolf->acc.y=-GRAVITY*m_game->delta_t;
+					collided_wolf=true;
+					player.m_wolf_y_plus=true;
+					if(player.m_active_char==player.m_wolf)
+					{
+						player.can_jump=true;					
+					}
+				}
+				//von unten
+				if(player.m_wolf->acc.y<0 && collided_wolf==false  && player.m_wolf_y_minus==false && player.m_wolf_y_plus==false) 
+				{
+					player.m_wolf->pos.y-=player.m_wolf->acc.y*m_game->delta_t;
+					player.m_wolf->acc.y=0;
+					player.m_wolf_y_minus=true;
+				}
+
+				//von links
+				if(player.m_wolf->acc.x>0 && player.m_wolf->acc.y==0 && player.m_wolf_x_plus==false)
+				{
+					player.m_wolf->pos.x-=player.m_wolf->acc.x/(abs(player.m_wolf->acc.x));
+					player.m_wolf->acc.x=0;
+					player.m_wolf->acc.y=-GRAVITY*m_game->delta_t;
+					player.m_wolf_x_plus=true;
+				}
+				//von rechts
+				if(player.m_wolf->acc.x<0 && player.m_wolf->acc.y==0 && player.m_wolf_x_minus==false)
+				{
+					player.m_wolf->pos.x-=player.m_wolf->acc.x/(abs(player.m_wolf->acc.x));
+					player.m_wolf->acc.x=0;
+					player.m_wolf->acc.y=-GRAVITY*m_game->delta_t;
+					player.m_wolf_x_minus=true;
 				}
 			}
-			//von unten
-			if(player.m_wolf->acc.y<0 && collided_wolf==false  && player.m_wolf_y_minus==false && player.m_wolf_y_plus==false) 
-			{
-				player.m_wolf->pos.y-=player.m_wolf->acc.y*m_game->delta_t;
-				player.m_wolf->acc.y=0;
-				player.m_wolf_y_minus=true;
-			}
-
-			//von links
-			if(player.m_wolf->acc.x>0 && player.m_wolf->acc.y==0 && player.m_wolf_x_plus==false)
-			{
-				player.m_wolf->pos.x-=player.m_wolf->acc.x/(abs(player.m_wolf->acc.x));
-				player.m_wolf->acc.x=0;
-				player.m_wolf->acc.y=-GRAVITY*m_game->delta_t;
-				player.m_wolf_x_plus=true;
-			}
-			//von rechts
-			if(player.m_wolf->acc.x<0 && player.m_wolf->acc.y==0 && player.m_wolf_x_minus==false)
-			{
-				player.m_wolf->pos.x-=player.m_wolf->acc.x/(abs(player.m_wolf->acc.x));
-				player.m_wolf->acc.x=0;
-				player.m_wolf->acc.y=-GRAVITY*m_game->delta_t;
-				player.m_wolf_x_minus=true;
-			}
-		}
 		if(huw::collision(*player.m_hase, objects[i]))
 		{
 			collided_hase=false;
