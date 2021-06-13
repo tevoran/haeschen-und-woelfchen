@@ -23,14 +23,24 @@ huw::game::game()
 
 	std::cout << "initializing SDL2_ttf" << std::endl;
 	TTF_Init();
-	font=TTF_OpenFont("../assets/font/Retroscape.ttf", 25);
-	if(font!=NULL)
+	font_big=TTF_OpenFont("../assets/font/Retroscape.ttf", 25);
+	if(font_big!=NULL)
 	{
-		std::cout << "Font was loaded" << std::endl;
+		std::cout << "Big font was loaded" << std::endl;
 	}
 	else
 	{
-		std::cout << "ERROR: font couldn't be loaded" << std::endl;
+		std::cout << "ERROR: Big font couldn't be loaded" << std::endl;
+	}
+
+	font_small=TTF_OpenFont("../assets/font/Retroscape.ttf", 12);
+	if(font_small!=NULL)
+	{
+		std::cout << "Small font was loaded" << std::endl;
+	}
+	else
+	{
+		std::cout << "ERROR: Small font couldn't be loaded" << std::endl;
 	}
 
 	//Tastaturzustandsarray
