@@ -39,10 +39,6 @@ huw::level::level(uint8_t level[11][20], huw::game *game, huw::player& player)
 					taube[taube.size()-1].pos.x=ix*PLAYER_SIZE;
 					taube[taube.size()-1].pos.y=iy*PLAYER_SIZE;
 
-					taube_tot.push_back(huw::sprite("../assets/TaubeTot.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
-					taube_tot[taube_tot.size()-1].pos.x=ix*PLAYER_SIZE;
-					taube_tot[taube_tot.size()-1].pos.y=iy*PLAYER_SIZE;
-
 					//parameter hinzufügen
 					taube_richtung.push_back(false); //links
 					taube_alive.push_back(true);
@@ -99,11 +95,12 @@ void huw::level::render()
 
 	for(unsigned int i=0; i<taube.size(); i++)
 	{
-		if(taube_alive[i])
-			taube[i].render();
-		else{
-			taube_tot[i].render();
-		}
+		taube[i].render();
+	}
+
+	for(unsigned int i=0; i<taube_tot.size(); i++)
+	{
+		taube_tot[i].render();
 	}
 
 	if(!activated){
@@ -165,7 +162,11 @@ void huw::level::collision(huw::player& player){
 		}
 		for(unsigned int i=0;i<taube.size();i++){
 			if(huw::collision(*player.m_wolf, taube[i])){
-				taube_alive[i]=false;
+					//spawn leichen
+					taube_tot.push_back(huw::sprite("../assets/TaubeTot.png", m_game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE));
+					taube_tot[taube_tot.size()-1].pos.x=taube[i].pos.x;
+					taube_tot[taube_tot.size()-1].pos.y=taube[i].pos.y;
+				taube.erase(taube.begin()+i);
 			}	
 		}
 

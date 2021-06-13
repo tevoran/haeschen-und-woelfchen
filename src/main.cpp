@@ -15,9 +15,9 @@ int main(int argc, char *argv[])
 	huw::sprite wolf("../assets/Woelfchen1.png", &game, 0, 0, 32, 32, PLAYER_SIZE, PLAYER_SIZE);
 	huw::player player(&hase, &wolf, &game);
 	std::vector<huw::level> level;
-	level.push_back(huw::level(huw::level3, &game, player)); //level 0
+	level.push_back(huw::level(huw::levelTest, &game, player)); //level 0
 
-	int current_level=1;
+	int current_level=0;
 	int current_instance=0;
 
 
@@ -39,6 +39,10 @@ int main(int argc, char *argv[])
 			{
 				level.push_back(huw::level(huw::level2, &game, player)); //level 2
 			}
+			if(current_level==3)
+			{
+				level.push_back(huw::level(huw::level3, &game, player)); //level 3
+			}
 		}
 		if(level[current_instance].game_over(player))
 		{
@@ -55,6 +59,10 @@ int main(int argc, char *argv[])
 			if(current_level==2)
 			{
 				level.push_back(huw::level(huw::level2, &game, player)); //level 2
+			}
+			if(current_level==3)
+			{
+				level.push_back(huw::level(huw::level3, &game, player)); //level 3
 			}
 		}
 		player.update(); //muss vor der level kollision sein
