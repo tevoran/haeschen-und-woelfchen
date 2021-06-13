@@ -273,7 +273,7 @@ bool huw::level::check_coll(huw::player& player, std::vector<huw::sprite> &objec
 
 bool huw::level::done(huw::player& player)
 {
-	if(player.m_hase->pos.x>RESX && player.m_wolf->pos.x>RESX)
+	if(player.m_hase->pos.x+PLAYER_SIZE>RESX && player.m_wolf->pos.x+PLAYER_SIZE>RESX)
 	{
 		return true;
 	}
