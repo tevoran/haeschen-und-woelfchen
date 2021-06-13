@@ -132,22 +132,24 @@ void huw::player::update()
 
 	//jump
 	static float acceleration_time_jump=0;
-	if(m_game->keyboard_state[SDL_SCANCODE_W])
+	if(m_game->keyboard_state[SDL_SCANCODE_W] && can_jump==true)
 	{
+		/*
 		bool hase_standing = (m_hase->pos.y == RESY - m_hase->dst_rect.h);
-		bool wolf_standing = (m_wolf->pos.y == RESY - m_wolf->dst_rect.h);
+		bool wolf_standing = (m_wolf->pos.y == RESY - m_wolf->dst_rect.h);*/
 		acceleration_time_jump+=m_game->delta_t;
 		if(acceleration_time_jump<ACCELERATION_DURATION_VERTICAL)
 		{
-			if(m_active_char==m_hase && hase_standing)
+			if(m_active_char==m_hase && can_jump)
 			{
 				m_hase->acc.y-=HASE_ACCELERATION_VERTICAL;
 			}
-			if(m_active_char==m_wolf && wolf_standing)
+			if(m_active_char==m_wolf && can_jump)
 			{
 				m_wolf->acc.y-=WOLF_ACCELERATION_VERTICAL;
 			}
 		}
+		can_jump=false;
 	}
 	//decelleration
 	else

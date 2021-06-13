@@ -62,6 +62,10 @@ void huw::level::collision(huw::player& player){
 	check_coll(player, neon_m);
 	check_coll(player, neon_r);
 	check_coll(player, abfall);
+	if(player.m_active_char->pos.y+PLAYER_SIZE>=RESY)
+	{
+		player.can_jump=true;
+	}
 }
 
 void huw::level::check_coll(huw::player& player, std::vector<huw::sprite> &objects){
@@ -77,6 +81,10 @@ void huw::level::check_coll(huw::player& player, std::vector<huw::sprite> &objec
 				player.m_wolf->acc.y=-GRAVITY*m_game->delta_t;
 				collided=true;
 				player.m_wolf_y_plus=true;
+				if(player.m_active_char==player.m_wolf)
+				{
+					player.can_jump=true;					
+				}
 			}
 			//von unten
 			if(player.m_wolf->acc.y<0 && collided==false  && player.m_wolf_y_minus==false && player.m_wolf_y_plus==false) 
@@ -113,6 +121,10 @@ void huw::level::check_coll(huw::player& player, std::vector<huw::sprite> &objec
 				player.m_hase->acc.y=-GRAVITY*m_game->delta_t;
 				collided=true;
 				player.m_hase_y_plus=true;
+				if(player.m_active_char==player.m_hase)
+				{
+					player.can_jump=true;					
+				}
 			}
 			//von unten
 			if(player.m_hase->acc.y<0 && collided==false && player.m_hase_y_minus==false && player.m_hase_y_plus==false)

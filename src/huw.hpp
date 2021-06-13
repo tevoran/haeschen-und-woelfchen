@@ -67,10 +67,11 @@ namespace huw
 	{
 	private:
 		huw::game *m_game=NULL;
-		huw::sprite *m_active_char=NULL;
 	public:
 		huw::sprite *m_hase=NULL;
 		huw::sprite *m_wolf=NULL;
+		huw::sprite *m_active_char=NULL;
+
 
 		bool m_wolf_x_plus=false;
 		bool m_wolf_x_minus=false;
@@ -81,6 +82,8 @@ namespace huw
 		bool m_hase_x_minus=false;
 		bool m_hase_y_plus=false;
 		bool m_hase_y_minus=false;
+
+		bool can_jump=true;
 
 		player(huw::sprite *hase, huw::sprite *wolf, huw::game *game);
 		void update(); //Player zeichnen, Steuerung und so weiter
