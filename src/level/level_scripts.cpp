@@ -17,6 +17,10 @@ void huw::level_scripts(int current_level, huw::game& game)
 	static huw::text tut_text9(&game, "!  LITTLE WOLF CAN EAT TRASH CANS  !", TEXT_COLOR, true);
 	static huw::text tut_text10(&game, "!  AND BEAT PIGEONS  !", TEXT_COLOR, true);
 
+	static huw::text tut_text11(&game, "!  CREDIT TEXT 1  !", TEXT_COLOR, true);
+	static huw::text tut_text12(&game, "!  CREDIT TEXT 2  !", TEXT_COLOR, true);
+	static huw::text tut_text13(&game, "!  CREDIT TEXT 3  !", TEXT_COLOR, true);
+	static huw::text tut_text14(&game, "!  PRESS ESC TO QUIT  !", TEXT_COLOR, true);
 
 	//tutorial
 	if(current_level==0)
@@ -86,4 +90,35 @@ void huw::level_scripts(int current_level, huw::game& game)
 		}
 	}
 
+	if(current_level==4){
+		static float intro_text=0;
+		intro_text+=game.delta_t;
+
+		while(!(game.keyboard_state[SDL_SCANCODE_ESCAPE])){
+			if(intro_text<4){
+				{
+					tut_text11.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
+				}
+				if(intro_text<8 && intro_text>4)
+				{
+					tut_text12.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
+				}
+				if(intro_text<12 && intro_text>8)
+				{
+					tut_text13.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
+				}
+				if(intro_text<16 && intro_text>12)
+				{
+					tut_text14.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
+				}
+				if(intro_text>16)
+				{
+					intro_text=0;
+				}
+				while(SDL_PollEvent(&game.m_event))
+				{
+				}
+			}
+		}
+	}
 }

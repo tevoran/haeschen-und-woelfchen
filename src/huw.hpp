@@ -25,7 +25,6 @@ namespace huw
 	{
 	private:
 		SDL_Window *m_window=NULL;
-		SDL_Event m_event;
 
 		//frame time timer
 		steady_clock::time_point m_old_frame;
@@ -35,6 +34,7 @@ namespace huw
 		const uint8_t *keyboard_state=NULL;
 		TTF_Font *font_big=NULL;
 		TTF_Font *font_small=NULL;
+		SDL_Event m_event;
 
 		//frametime
 		float delta_t; //in sekunden

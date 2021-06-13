@@ -66,7 +66,9 @@ int main(int argc, char *argv[])
 			}
 		}
 		huw::level_scripts(current_level, game);
-		
+		if(current_level == 4){
+			exit(1);
+		}
 		player.update(); //muss vor der level kollision sein
 		level[current_instance].collision(player);
 
