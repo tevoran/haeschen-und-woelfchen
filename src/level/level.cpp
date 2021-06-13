@@ -242,3 +242,12 @@ bool huw::level::check_coll(huw::player& player, std::vector<huw::sprite> &objec
 	}
 	return false;
 }
+
+bool huw::level::done(huw::player& player)
+{
+	if(player.m_hase->pos.x>RESX && player.m_wolf->pos.x>RESX)
+	{
+		return true;
+	}
+	return false;
+}
