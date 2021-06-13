@@ -5,6 +5,13 @@ void huw::level_scripts(int current_level, huw::game& game)
 {
 	SDL_Color TEXT_COLOR={228,20,228,0};
 
+
+	static huw::text level0(&game, "LEVEL 0", TEXT_COLOR, false);
+	static huw::text level1(&game, "LEVEL 1", TEXT_COLOR, false);
+	static huw::text level2(&game, "LEVEL 2", TEXT_COLOR, false);
+	static huw::text level3(&game, "LEVEL 3", TEXT_COLOR, false);
+
+
 	static huw::text tut_text1(&game, "!  WELCOME  TO  HAESCHEN  AND  WOELFCHEN  !", TEXT_COLOR, true);
 	static huw::text tut_text2(&game, "!  MOVE  WITH  THE  KEYS  A  AND  D  !", TEXT_COLOR, true);
 	static huw::text tut_text3(&game, "!  JUMP  WITH  W  !", TEXT_COLOR, true);
@@ -21,6 +28,9 @@ void huw::level_scripts(int current_level, huw::game& game)
 	//tutorial
 	if(current_level==0)
 	{
+		level0.render((int)(0.92*(float)RESX),(int)(0.02*(float)RESY));
+
+		
 		static float intro_text=0;
 		intro_text+=game.delta_t;
 		if(intro_text<4)
@@ -61,6 +71,8 @@ void huw::level_scripts(int current_level, huw::game& game)
 
 	if(current_level==1)
 	{
+		level1.render((int)(0.92*(float)RESX),(int)(0.02*(float)RESY));
+
 		static float intro_text=0;
 		intro_text+=game.delta_t;
 
@@ -86,4 +98,13 @@ void huw::level_scripts(int current_level, huw::game& game)
 		}
 	}
 
+	if(current_level==2)
+	{
+		level2.render((int)(0.92*(float)RESX),(int)(0.02*(float)RESY));
+	}
+
+	if(current_level==3)
+	{
+		level3.render((int)(0.92*(float)RESX),(int)(0.02*(float)RESY));
+	}
 }
