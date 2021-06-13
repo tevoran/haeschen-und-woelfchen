@@ -21,6 +21,18 @@ huw::game::game()
 	std::cout << "initializing SDL2_image" << std::endl;
 	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
 
+	std::cout << "initializing SDL2_ttf" << std::endl;
+	TTF_Init();
+	font=TTF_OpenFont("../assets/font/Retroscape.ttf", 48);
+	if(font!=NULL)
+	{
+		std::cout << "Font was loaded" << std::endl;
+	}
+	else
+	{
+		std::cout << "ERROR: font couldn't be loaded" << std::endl;
+	}
+
 	//Tastaturzustandsarray
 	keyboard_state=SDL_GetKeyboardState(NULL);
 	if(keyboard_state==NULL)
@@ -34,6 +46,8 @@ huw::game::game()
 
 huw::game::~game()
 {
+	IMG_Quit();
+	TTF_Quit();
 	std::cout << "ending SDL2" << std::endl;
 	SDL_Quit();
 }

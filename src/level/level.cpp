@@ -36,21 +36,21 @@ huw::level::level(uint8_t level[11][20], huw::game *game)
 
 void huw::level::render()
 {
-	for(int i=0; i<abfall.size(); i++)
+	for(unsigned int i=0; i<abfall.size(); i++)
 	{
 		abfall[i].render();
 	}
-	for(int i=0; i<neon_l.size(); i++)
+	for(unsigned int i=0; i<neon_l.size(); i++)
 	{
 		neon_l[i].render();
 	}
 
-		for(int i=0; i<neon_m.size(); i++)
+	for(unsigned int i=0; i<neon_m.size(); i++)
 	{
 		neon_m[i].render();
 	}
 
-		for(int i=0; i<neon_r.size(); i++)
+	for(unsigned int i=0; i<neon_r.size(); i++)
 	{
 		neon_r[i].render();
 	}
@@ -58,7 +58,7 @@ void huw::level::render()
 
 void huw::level::collision(huw::player& player)
 {
-	for(int i=0; i<abfall.size(); i++)
+	for(unsigned int i=0; i<abfall.size(); i++)
 	{
 		if(huw::collision(*player.m_wolf, abfall[i]))
 		{

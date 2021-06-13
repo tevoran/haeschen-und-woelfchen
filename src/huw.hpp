@@ -33,6 +33,7 @@ namespace huw
 	public:
 		SDL_Renderer *m_renderer=NULL;
 		const uint8_t *keyboard_state=NULL;
+		TTF_Font *font=NULL;
 
 		//frametime
 		float delta_t; //in sekunden
