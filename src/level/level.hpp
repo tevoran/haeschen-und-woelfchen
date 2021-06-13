@@ -5,10 +5,11 @@
 #define NEON_L 2
 #define NEON_M 3
 #define NEON_R 4
-#define TAUBE 5
-#define GHETTO 6
-#define WOLF 7
-#define HASE 8
+#define NEON 5
+#define TAUBE 6
+#define GHETTO 7
+#define WOLF 8
+#define HASE 9
 
 
 #define LEVEL_X 20
@@ -28,6 +29,7 @@ namespace huw
 		std::vector<huw::sprite> neon_l;
 		std::vector<huw::sprite> neon_m;
 		std::vector<huw::sprite> neon_r;
+		std::vector<huw::sprite> neon;
 		std::vector<huw::sprite> ghetto;
 
 		//gegner
