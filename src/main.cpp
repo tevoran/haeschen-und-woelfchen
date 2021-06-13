@@ -16,23 +16,27 @@ int main(int argc, char *argv[])
 	huw::player player(&hase, &wolf, &game);
 
 	std::vector<huw::level> level;
-	level.push_back(huw::level(huw::levelTest, &game, player));
+	level.push_back(huw::level(huw::levelTest, &game, player)); //level 0
 
 
-	int current_level=1;
+	int current_level=0;
 
 	bool quit=false;
 	while(!quit)
 	{
 		background.render();
-		level[0].enemy_update();
-		level[0].render();
-		if(level[0].done(player))
+		level[current_level].enemy_update();
+		level[current_level].render();
+		if(level[current_level].done(player))
 		{
-			std::cout << "LEVEL GESCHAFFT" << std::endl;
+			current_level++;
+			if(current_level==1)
+			{
+				level.push_back(huw::level(huw::level1, &game, player)); //level 1
+			}
 		}
 		player.update(); //muss vor der level kollision sein
-		level[0].collision(player);
+		level[current_level].collision(player);
 
 		huw::level_scripts(current_level, game);
 

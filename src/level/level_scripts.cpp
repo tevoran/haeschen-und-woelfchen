@@ -14,7 +14,7 @@ void huw::level_scripts(int current_level, huw::game& game)
 
 
 	//tutorial
-	if(current_level==1)
+	if(current_level==0)
 	{
 		static float intro_text=0;
 		intro_text+=game.delta_t;
