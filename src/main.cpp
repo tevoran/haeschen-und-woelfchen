@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 	{
 		background.render();
 		level.render();
-		player.update();
+		player.update(); //muss vor der level kollision sein
 		level.collision(player);
 		intro_text1.render((int)(0.125*(float)RESX),(int)(0.375*(float)RESY));
 		intro_text2.render((int)(0.64*(float)RESX),(int)(0.485*(float)RESY));
