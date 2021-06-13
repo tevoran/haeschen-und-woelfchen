@@ -200,4 +200,15 @@ void huw::player::update()
 	//render beide Player Charaktere
 	m_hase->render();
 	m_wolf->render();
+
+	//kollisionen zurücksetzen
+	m_wolf_x_plus=false;
+	m_wolf_x_minus=false;
+	m_wolf_y_plus=false;
+	m_wolf_y_minus=false;
+
+	m_hase_x_plus=false;
+	m_hase_x_minus=false;
+	m_hase_y_plus=false;
+	m_hase_y_minus=false;
 }

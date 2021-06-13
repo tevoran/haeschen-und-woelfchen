@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 	{
 		background.render();
 		level.render();
-		player.update();
+		player.update(); //muss vor der level kollision sein
 		level.collision(player);
 		game.update(quit);
 	}
