@@ -12,8 +12,14 @@ void huw::level_scripts(int current_level, huw::game& game)
 	static huw::text tut_text5(&game, "!  USE  A  GHETTO  BLASTER  WITH  E  !", TEXT_COLOR, true);
 	static huw::text tut_text6(&game, "!  PAY  RESPECT  WITH  F  !", TEXT_COLOR, true);
 
+	static huw::text tut_text7(&game, "!  BEWARE OF THE PIGEONS  !", TEXT_COLOR, true);
+	static huw::text tut_text8(&game, "!  ONCE THE GHETTO BLASTER IS ACTIVATED  !", TEXT_COLOR, true);
+	static huw::text tut_text9(&game, "!  LITTLE WOLF CAN EAT TRASH CANS  !", TEXT_COLOR, true);
+	static huw::text tut_text10(&game, "!  AND BEAT PIGEONS  !", TEXT_COLOR, true);
+
 
 	//tutorial
+	if(current_level==0)
 	{
 		static float intro_text=0;
 		intro_text+=game.delta_t;
@@ -52,4 +58,32 @@ void huw::level_scripts(int current_level, huw::game& game)
 			intro_text=4;
 		}
 	}
+
+	if(current_level==1)
+	{
+		static float intro_text=0;
+		intro_text+=game.delta_t;
+
+		if(intro_text<4)
+		{
+			tut_text7.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
+		}
+		if(intro_text<8 && intro_text>4)
+		{
+			tut_text8.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
+		}
+		if(intro_text<12 && intro_text>8)
+		{
+			tut_text9.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
+		}
+		if(intro_text<16 && intro_text>12)
+		{
+			tut_text10.render((int)(0.1*(float)RESX),(int)(0.025*(float)RESY));
+		}
+		if(intro_text>16)
+		{
+			intro_text=0;
+		}
+	}
+
 }

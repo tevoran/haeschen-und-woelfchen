@@ -65,10 +65,11 @@ int main(int argc, char *argv[])
 				level.push_back(huw::level(huw::level3, &game, player)); //level 3
 			}
 		}
+		huw::level_scripts(current_level, game);
+		
 		player.update(); //muss vor der level kollision sein
 		level[current_instance].collision(player);
 
-		huw::level_scripts(current_level, game);
 
 		game.update(quit);
 	}
